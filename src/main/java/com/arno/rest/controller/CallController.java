@@ -38,17 +38,22 @@ public class CallController {
         }
 
         long currentDate = Instant.now().getEpochSecond();
-        //long tokenExpirationDate = tokenDto.getExpiration();
+        long tokenExpirationDate = Long.parseLong(tokenService.getTokenByValue(tokenDto.getValue()).getExpiration());
 
-        List<CallDto> calls = callService.getForUser(userId).stream().map(CallDto::toDto).collect(Collectors.toList());
-        if (calls == null || calls.isEmpty()) {
-            response.setCode(1);
-            response.setMessage("Таблица звонков пуста");
-            response.setCalls(Collections.emptyList());
+        if (currentDate > tokenExpirationDate) {
+            response.setCode(98);
+            response.setMessage("Токен истек");
             return response;
         }
 
+        List<CallDto> calls = callService.getForUser(userId).stream().map(CallDto::toDto).collect(Collectors.toList());
         response.setCalls(calls);
+        if (calls.isEmpty()) {
+            response.setCode(97);
+            response.setMessage("Таблица звонков пуста");
+            return response;
+        }
+
         response.setMessage("Список получен");
 
         return response;

@@ -14,7 +14,11 @@ public class TokenService {
     private final UserDao userDao;
 
     public Integer getUserIdByToken(String value) {
-        return tokenDao.getTokenByValue(value).getUser();
+        return getTokenByValue(value).getUser();
+    }
+
+    public Token getTokenByValue(String value) {
+        return tokenDao.getTokenByValue(value);
     }
 
     public Token getTokenById(int id) {
