@@ -19,10 +19,13 @@ public class UserDto {
 
     private int id;
 
+    @JsonProperty(value = "firstName")
     private String firstname;
 
+    @JsonProperty(value = "middleName")
     private String middlename;
 
+    @JsonProperty(value = "lastName")
     private String lastname;
 
     private String workingPosition;
@@ -30,6 +33,16 @@ public class UserDto {
     private String login;
 
     private String password;
+
+    @JsonProperty("token")
+    public TokenDto getTokenDto() {
+        return tokenDto;
+    }
+
+    @JsonProperty("organization")
+    public OrganizationDto getOrganizationDto() {
+        return organizationDto;
+    }
 
     public static UserDto toDto(User user){
         return new UserDto(
@@ -45,7 +58,7 @@ public class UserDto {
         );
     }
 
-    public static User toDomainObject(UserDto userDto){
+    public static User toDomainObject(UserDto userDto) {
         return new User(
                 userDto.getId(),
                 userDto.getFirstname(),
@@ -57,13 +70,5 @@ public class UserDto {
                 userDto.getPassword(),
                 OrganizationDto.toDomainObject(userDto.getOrganizationDto())
         );
-    }
-    @JsonProperty("token")
-    public TokenDto getTokenDto() {
-        return tokenDto;
-    }
-    @JsonProperty("organization")
-    public OrganizationDto getOrganizationDto() {
-        return organizationDto;
     }
 }

@@ -1,6 +1,7 @@
 package com.arno.rest.dto;
 
 import com.arno.domain.Token;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class TokenDto {
 
     private String value;
 
+    @JsonProperty(value = "expirationDate")
     private String expiration;
 
     private int user;
