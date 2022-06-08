@@ -1,29 +1,21 @@
 package com.arno.service;
 
-import com.arno.domain.Token;
+import com.arno.dao.UserDao;
 import com.arno.domain.User;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+@RequiredArgsConstructor
+public class UserService {
 
-public interface UserService {
+    private final UserDao userDao;
 
-    User insert(String firstname,
-                String middlename,
-                String lastname,
-                Token tokenId,
-                String workingPosition,
-                String login,
-                String password,
-                int organizationId
-    );
+    public User getByLoginAndPassword(String login, String password) {
+        return userDao.getByLoginAndPassword(login,password);
+    }
 
-    List<User> getAll();
-
-    User getById(int id);
-
-    void deleteById(int id);
-
-    User getByLoginAndPassword(String login, String password);
-
-
+    public User getById(int id) {
+        return userDao.getById(id);
+    }
 }

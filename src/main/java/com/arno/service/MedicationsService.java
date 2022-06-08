@@ -1,20 +1,20 @@
 package com.arno.service;
 
 import com.arno.domain.Medications;
+import com.arno.dao.MedicationsDao;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface MedicationsService {
+@Service
+@RequiredArgsConstructor
+public class MedicationsService {
 
-    Medications insert(
-            String category,
-            String name,
-            String receipt
-    );
+    private final MedicationsDao medicationsDao;
 
-    List<Medications> getAll();
+    public List<Medications> getAll() {
+        return medicationsDao.findAll();
+    }
 
-    Medications getById(int id);
-
-    void deleteById(int id);
 }

@@ -33,13 +33,13 @@ public class UserDto {
 
     public static UserDto toDto(User user){
         return new UserDto(
-                TokenDto.toDto(user.getToken_id()),
+                TokenDto.toDto(user.getToken()),
                 OrganizationDto.toDto(user.getOrganization_id()),
                 user.getId(),
-                user.getFirstname(),
-                user.getMiddlename(),
+                user.getFirstName(),
+                user.getMiddleName(),
                 user.getLastname(),
-                user.getWorking_position(),
+                user.getWorkingPosition(),
                 user.getLogin(),
                 user.getPassword()
         );

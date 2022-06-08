@@ -1,14 +1,11 @@
 package com.arno.rest.controller;
 
-import com.arno.domain.Medications;
 import com.arno.rest.dto.MedicationsDto;
 import com.arno.service.MedicationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

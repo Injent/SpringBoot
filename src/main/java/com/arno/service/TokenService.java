@@ -1,24 +1,27 @@
 package com.arno.service;
 
-
+import com.arno.dao.TokenDao;
+import com.arno.dao.UserDao;
 import com.arno.domain.Token;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+@RequiredArgsConstructor
+public class TokenService {
 
-public interface TokenService {
+    private final TokenDao tokenDao;
+    private final UserDao userDao;
 
-    Token insert(String value,
-                 String expiration,
-                 int userId
-    );
+    public Integer getUserIdByToken(String value) {
+        return tokenDao.getTokenByValue(value).getUser();
+    }
 
-    List<Token> getAll();
+    public Token getTokenById(int id) {
+        return  tokenDao.getTokenById(id);
+    }
 
-    Token getById(int id);
-
-    void deleteById(int id);
-
-    Integer getUserIdByToken(String value);
-
-
+    public void updateToken(Token token) {
+        tokenDao.save(token);
+    }
 }

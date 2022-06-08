@@ -21,20 +21,20 @@ public class User {
     private int id;
 
     @Column(name = "firstname")
-    private String firstname;
+    private String firstName;
 
     @Column(name = "middlename")
-    private String middlename;
+    private String middleName;
 
     @Column(name = "lastname")
     private String lastname;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Token.class)
     @JoinColumn(name = "token_id")
-    private Token token_id;
+    private Token token;
 
     @Column(name = "working_position")
-    private String working_position;
+    private String workingPosition;
 
     @Column(name = "login")
     private String login;

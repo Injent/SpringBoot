@@ -1,28 +1,31 @@
 package com.arno.service;
 
 import com.arno.domain.Call;
+import com.arno.dao.CallDao;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface CallService {
+@Service
+@RequiredArgsConstructor
+public class CallService {
 
-    Call insert( String editCardDate,
-                 String reason,
-                 String bcc,
-                 String firstname,
-                 String middlename,
-                 String lastname,
-                 String sex,
-                 String residence,
-                 int phoneNumber
-    );
+    private final CallDao callDao;
 
-    List<Call> getAll();
+    public List<Call> getAll() {
+        return callDao.findAll();
+    }
 
-    Call getById(int id);
+    public Call getById(int id) {
+        return callDao.findById(id).get();
+    }
 
-    void deleteById(int id);
+    public void deleteById(int id) {
+        callDao.deleteById(id);
+    }
 
-    List<Call> getForUser(int userId);
-
+    public List<Call> getForUser(int userId) {
+        return callDao.getAllForUser(userId);
+    }
 }
