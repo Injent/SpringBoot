@@ -1,7 +1,5 @@
 package com.arno.rest.dto;
 
-import com.arno.domain.Call;
-import com.arno.domain.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +26,11 @@ public class ResponseDto {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MedicationsDto> medications;
+
+    public String getMessage() {
+        if (message == null) {
+            message = "";
+        }
+        return message;
+    }
 }
