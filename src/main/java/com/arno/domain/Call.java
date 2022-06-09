@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -21,10 +22,13 @@ public class Call {
     private int id;
 
     @Column(name = "user_id")
-    private int user_id;
+    private int userId;
+
+    @Column(name = "call_time")
+    private Date callTime;
 
     @Column(name = "edit_card_date")
-    private String edit_card_date;
+    private Date editCardDate;
 
     @Column(name = "reason")
     private String reason;
@@ -32,23 +36,26 @@ public class Call {
     @Column(name = "bcc")
     private String bcc;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "middlename")
-    private String middlename;
+    @Column(name = "middle_name")
+    private String middleName;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "born_date")
+    private Date bornDate;
 
     @Column(name = "sex")
-    private String sex;
+    private byte sex;
 
     @Column(name = "residence")
     private String residence;
 
     @Column(name = "phone_number")
-    private int phone_number;
+    private String phoneNumber;
 
 
 }

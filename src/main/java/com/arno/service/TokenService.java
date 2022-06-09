@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 public class TokenService {
 
     private final TokenDao tokenDao;
-    private final UserDao userDao;
 
     public Integer getUserIdByToken(String value) {
-        return getTokenByValue(value).getUser();
+        return getTokenByValue(value).getUserId();
     }
 
     public Token getTokenByValue(String value) {

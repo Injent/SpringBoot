@@ -25,7 +25,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="expiration" type="VARCHAR(100)">
+            <column name="expiration_date" type="DATE">
                 <constraints nullable="false"/>
             </column>
 

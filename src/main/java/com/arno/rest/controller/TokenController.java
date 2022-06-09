@@ -37,13 +37,13 @@ public class TokenController {
         }
 
         long currentDate = Instant.now().getEpochSecond();
-        long tokenExpirationDate = Long.parseLong(user.getToken().getExpiration());
-
-        if (currentDate > tokenExpirationDate) {
-            response.setCode(98);
-            response.setMessage("Токен истек");
-            return response;
-        }
+//        long tokenExpirationDate = user.getToken().getExpirationDate();
+//
+//        if (currentDate > tokenExpirationDate) {
+//            response.setCode(98);
+//            response.setMessage("Токен истек");
+//            return response;
+//        }
         return response;
     }
 }

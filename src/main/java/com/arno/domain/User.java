@@ -20,13 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "firstname")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "middlename")
+    @Column(name = "middle_name")
     private String middleName;
 
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     private String lastname;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Token.class)
@@ -44,6 +44,6 @@ public class User {
 
     @ManyToOne(cascade = CascadeType.ALL,targetEntity = Organization.class)
     @JoinColumn(name = "organization_id")
-    private Organization organization_id;
+    private Organization organization;
 
 }

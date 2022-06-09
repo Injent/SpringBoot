@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -23,11 +24,12 @@ public class Token {
     @Column(name = "value")
     private String value;
 
-    @Column(name = "expiration")
-    private String expiration;
+
+    @Column(name = "expiration_date")
+    private Date expirationDate;
 
     @Column(name = "user_id")
-    private int user;
+    private int userId;
 
 
 }

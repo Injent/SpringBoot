@@ -16,4 +16,4 @@ spring:
     enabled: true
     change-log: classpath:db.changelog/db.changelog-master.xml
 server:
-  port: 8082
+  port: 8081

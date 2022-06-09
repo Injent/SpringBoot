@@ -40,19 +40,19 @@ public class UserController {
         }
 
         long currentDate = Instant.now().getEpochSecond();
-        long tokenExpirationDate = Long.parseLong(user.getToken().getExpiration());
+        //long tokenExpirationDate = user.getToken().getExpirationDate();
         long tokenExpirationNextDate = currentDate + 300000L;
 
         UserDto userDtoNew = UserDto.toDto(user);
-        if (currentDate > tokenExpirationDate) {
-            Token token = user.getToken();
-            token.setExpiration(String.valueOf(tokenExpirationNextDate));
-            tokenService.updateToken(token);
-
-            userDtoNew.setTokenDto(TokenDto.toDto(token));
-
-            response.setMessage("Токен обновлен | ");
-        }
+//        if (currentDate > tokenExpirationDate) {
+//            Token token = user.getToken();
+//            token.setExpirationDate(tokenExpirationNextDate);
+//            tokenService.updateToken(token);
+//
+//            userDtoNew.setTokenDto(TokenDto.toDto(token));
+//
+//            response.setMessage("Токен обновлен | ");
+//        }
         response.setMessage(response.getMessage() + "Авторизация успешна");
         response.setUser(userDtoNew);
         response.setCode(100);

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,55 +17,67 @@ public class CallDto {
 
     private int id;
 
-    private int user_id;
+    private int userId;
 
-    private String edit_card_date;
+    private long callTime;
+
+    private long editCardDate;
 
     private String reason;
 
     private String bcc;
 
-    private String firstname;
+    private String firstName;
 
-    private String middlename;
+    private String middleName;
 
-    private String lastname;
+    private String lastName;
 
-    private String sex;
+    private long bornDate;
+
+    private boolean sex;
 
     private String residence;
 
-    private int phone_number;
+    private String phoneNumber;
 
     public static CallDto toDto (Call call){
+        boolean sex = call.getSex() == 1;
         return new CallDto(
                 call.getId(),
-                call.getUser_id(),
-                call.getEdit_card_date(),
+                call.getUserId(),
+                call.getCallTime().getTime(),
+                call.getEditCardDate().getTime(),
                 call.getReason(),
                 call.getBcc(),
-                call.getFirstname(),
-                call.getMiddlename(),
-                call.getLastname(),
-                call.getSex(),
+                call.getFirstName(),
+                call.getMiddleName(),
+                call.getLastName(),
+                call.getBornDate().getTime(),
+                sex,
                 call.getResidence(),
-                call.getPhone_number()
+                call.getPhoneNumber()
         );
     }
 
     public static Call toDomainObject(CallDto callDto){
+        byte sex = 0;
+        if (callDto.isSex())
+            sex = 1;
         return new Call(
                 callDto.getId(),
-                callDto.getUser_id(),
-                callDto.getEdit_card_date(),
+                callDto.getUserId(),
+                new Date(callDto.getCallTime()),
+                new Date(callDto.getEditCardDate()),
                 callDto.getReason(),
                 callDto.getBcc(),
-                callDto.getFirstname(),
-                callDto.getMiddlename(),
-                callDto.getLastname(),
-                callDto.getSex(),
+                callDto.getFirstName(),
+                callDto.getMiddleName(),
+                callDto.getLastName(),
+                new Date(callDto.getBornDate()),
+                sex,
                 callDto.getResidence(),
-                callDto.getPhone_number()
+                callDto.getPhoneNumber()
         );
     }
 }

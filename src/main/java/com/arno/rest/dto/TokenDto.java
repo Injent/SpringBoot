@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
 
 @Data
@@ -21,7 +22,7 @@ public class TokenDto {
     private String value;
 
     @JsonProperty(value = "expirationDate")
-    private String expiration;
+    private Date expirationDate;
 
     private int user;
 
@@ -29,8 +30,8 @@ public class TokenDto {
         return new TokenDto(
                 token.getId(),
                 token.getValue(),
-                token.getExpiration(),
-                token.getUser()
+                token.getExpirationDate(),
+                token.getUserId()
         );
     }
 
@@ -38,7 +39,7 @@ public class TokenDto {
         return new Token(
                 tokenDto.getId(),
                 tokenDto.getValue(),
-                tokenDto.getExpiration(),
+                tokenDto.getExpirationDate(),
                 tokenDto.getUser()
         );
     }

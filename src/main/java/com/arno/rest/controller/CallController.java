@@ -1,18 +1,17 @@
 package com.arno.rest.controller;
 
-import com.arno.domain.User;
 import com.arno.rest.dto.CallDto;
 import com.arno.rest.dto.ResponseDto;
 import com.arno.rest.dto.TokenDto;
 import com.arno.service.CallService;
 import com.arno.service.TokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +37,7 @@ public class CallController {
         }
 
         long currentDate = Instant.now().getEpochSecond();
-        long tokenExpirationDate = Long.parseLong(tokenService.getTokenByValue(tokenDto.getValue()).getExpiration());
+        long tokenExpirationDate = tokenService.getTokenByValue(tokenDto.getValue()).getExpirationDate().getTime();
 
         if (currentDate > tokenExpirationDate) {
             response.setCode(98);
@@ -58,4 +57,10 @@ public class CallController {
 
         return response;
     }
+
+    @GetMapping("/calls")
+    public List<CallDto> getAllUsers(){
+        return callService.getAll().stream().map(CallDto::toDto).collect(Collectors.toList());
+    }
+
 }
