@@ -41,22 +41,34 @@ public class CallDto {
 
     private String phoneNumber;
 
+    private long snils;
+
+    private long polis;
+
+    private String passport;
+
     public static CallDto toDto (Call call){
         boolean sex = call.getSex() == 1;
+        long bornDate = Long.parseLong(String.valueOf(call.getBornDate().getTime()).substring(0,10));
+        long callTime = Long.parseLong(String.valueOf(call.getCallTime().getTime()).substring(0,10));
+        long editCardDate = Long.parseLong(String.valueOf(call.getCallTime().getTime()).substring(0,10));
         return new CallDto(
                 call.getId(),
                 call.getUserId(),
-                call.getCallTime().getTime(),
-                call.getEditCardDate().getTime(),
+                callTime,
+                editCardDate,
                 call.getReason(),
                 call.getBcc(),
                 call.getFirstName(),
                 call.getMiddleName(),
                 call.getLastName(),
-                call.getBornDate().getTime(),
+                bornDate,
                 sex,
                 call.getResidence(),
-                call.getPhoneNumber()
+                call.getPhoneNumber(),
+                call.getSnils(),
+                call.getPolis(),
+                call.getPassport()
         );
     }
 
@@ -77,7 +89,10 @@ public class CallDto {
                 new Date(callDto.getBornDate()),
                 sex,
                 callDto.getResidence(),
-                callDto.getPhoneNumber()
+                callDto.getPhoneNumber(),
+                callDto.getSnils(),
+                callDto.getPolis(),
+                callDto.getPassport()
         );
     }
 }

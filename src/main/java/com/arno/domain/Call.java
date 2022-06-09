@@ -57,5 +57,12 @@ public class Call {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "snils")
+    private long snils;
 
+    @Column(name = "polis")
+    private long polis;
+
+    @Column(name = "passport")
+    private String passport;
 }

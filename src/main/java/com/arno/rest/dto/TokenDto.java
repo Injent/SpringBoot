@@ -1,6 +1,7 @@
 package com.arno.rest.dto;
 
 import com.arno.domain.Token;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,20 +18,23 @@ import java.util.Date;
 
 public class TokenDto {
 
-    private int id;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    private Integer id;
 
     private String value;
 
     @JsonProperty(value = "expirationDate")
-    private Date expirationDate;
+    private long expirationDate;
 
-    private int user;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    private Integer userId;
 
     public static TokenDto toDto(Token token){
+        long formatDate = Long.parseLong(String.valueOf(token.getExpirationDate().getTime()).substring(0,10));
         return new TokenDto(
                 token.getId(),
                 token.getValue(),
-                token.getExpirationDate(),
+                formatDate,
                 token.getUserId()
         );
     }
@@ -39,8 +43,8 @@ public class TokenDto {
         return new Token(
                 tokenDto.getId(),
                 tokenDto.getValue(),
-                tokenDto.getExpirationDate(),
-                tokenDto.getUser()
+                new Date(tokenDto.getExpirationDate()),
+                tokenDto.getUserId()
         );
     }
 }

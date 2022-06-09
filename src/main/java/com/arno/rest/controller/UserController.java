@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.Date;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,20 +41,27 @@ public class UserController {
         }
 
         long currentDate = Instant.now().getEpochSecond();
-        //long tokenExpirationDate = user.getToken().getExpirationDate();
+        long tokenExpirationDate = user.getToken().getExpirationDate().getTime();
         long tokenExpirationNextDate = currentDate + 300000L;
 
+        Token token = user.getToken();;
         UserDto userDtoNew = UserDto.toDto(user);
-//        if (currentDate > tokenExpirationDate) {
-//            Token token = user.getToken();
-//            token.setExpirationDate(tokenExpirationNextDate);
-//            tokenService.updateToken(token);
-//
-//            userDtoNew.setTokenDto(TokenDto.toDto(token));
-//
-//            response.setMessage("Токен обновлен | ");
-//        }
+        if (currentDate > tokenExpirationDate) {
+            token.setExpirationDate(new Date(tokenExpirationNextDate));
+            tokenService.updateToken(token);
+
+            response.setMessage("Токен обновлен | ");
+        }
+
+        // Clean JSON
+        token.setUserId(null);
+        token.setId(null);
+
+        userDtoNew.setLogin(null);
+        userDtoNew.setPassword(null);
+
         response.setMessage(response.getMessage() + "Авторизация успешна");
+        userDtoNew.setTokenDto(TokenDto.toDto(token));
         response.setUser(userDtoNew);
         response.setCode(100);
 

@@ -1,6 +1,7 @@
 package com.arno.rest.dto;
 
 import com.arno.domain.User;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +31,10 @@ public class UserDto {
 
     private String workingPosition;
 
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private String login;
 
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
     private String password;
 
     @JsonProperty("token")

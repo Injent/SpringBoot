@@ -19,7 +19,7 @@ public class Token {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "value")
     private String value;
@@ -29,7 +29,7 @@ public class Token {
     private Date expirationDate;
 
     @Column(name = "user_id")
-    private int userId;
+    private Integer userId;
 
 
 }

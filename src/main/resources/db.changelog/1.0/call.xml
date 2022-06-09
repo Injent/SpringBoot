@@ -72,6 +72,18 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="snils" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="polis" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="passport" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
 
     </changeSet>
