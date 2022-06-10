@@ -23,7 +23,7 @@ public class CallController {
     private final CallService callService;
     private final TokenService tokenService;
 
-    @PostMapping("/calls")
+    @PostMapping("/call")
     public ResponseDto getCallsForUser(@RequestBody TokenDto tokenDto){
         ResponseDto response = new ResponseDto();
         Integer userId = tokenService.getUserIdByToken(tokenDto.getValue());
@@ -58,7 +58,7 @@ public class CallController {
         return response;
     }
 
-    @GetMapping("/calls")
+    @GetMapping("/call")
     public List<CallDto> getAllUsers(){
         return callService.getAll().stream().map(CallDto::toDto).collect(Collectors.toList());
     }
