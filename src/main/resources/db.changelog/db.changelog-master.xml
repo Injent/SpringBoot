@@ -9,11 +9,13 @@
     <include file="db.changelog/1.0/token.xml"/>
     <include file="db.changelog/1.0/call.xml"/>
     <include file="db.changelog/1.0/medications.xml"/>
+    <include file="db.changelog/1.0/objectively.xml"/>
 
     <include file="db.changelog/data/organization-data.xml"/>
     <include file="db.changelog/data/user-data.xml"/>
     <include file="db.changelog/data/token-data.xml"/>
     <include file="db.changelog/data/call-data.xml"/>
     <include file="db.changelog/data/medications-data.xml"/>
+    <include file="db.changelog/data/objectively-data.xml"/>
 
 </databaseChangeLog>

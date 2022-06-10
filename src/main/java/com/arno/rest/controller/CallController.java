@@ -63,4 +63,9 @@ public class CallController {
         return callService.getAll().stream().map(CallDto::toDto).collect(Collectors.toList());
     }
 
+    @PostMapping("/calls")
+    public List<CallDto> getCalls(TokenDto tokenDto) {
+        Integer userId = tokenService.getUserIdByToken(tokenDto.getValue());
+        return callService.getForUser(userId).stream().map(CallDto::toDto).collect(Collectors.toList());
+    }
 }

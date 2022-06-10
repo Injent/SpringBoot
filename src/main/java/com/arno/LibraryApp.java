@@ -20,10 +20,10 @@ public class LibraryApp {
 
         SpringApplication.run(LibraryApp.class, args);
 
-//        try{
-//            Console.main(args);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try{
+            Console.main(args);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
