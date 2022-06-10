@@ -23,8 +23,8 @@ public class CallController {
     private final CallService callService;
     private final TokenService tokenService;
 
-    @PostMapping("/call")
-    public ResponseDto getCallsForUser(@RequestBody TokenDto tokenDto){
+    @PostMapping("/calls")
+    public ResponseDto getCallsForUser(@RequestBody TokenDto tokenDto) {
         ResponseDto response = new ResponseDto();
         Integer userId = tokenService.getUserIdByToken(tokenDto.getValue());
 
@@ -56,16 +56,5 @@ public class CallController {
         response.setMessage("Список получен");
 
         return response;
-    }
-
-    @GetMapping("/call")
-    public List<CallDto> getAllUsers(){
-        return callService.getAll().stream().map(CallDto::toDto).collect(Collectors.toList());
-    }
-
-    @PostMapping("/calls")
-    public List<CallDto> getCalls(@RequestBody TokenDto tokenDto) {
-        Integer userId = tokenService.getUserIdByToken(tokenDto.getValue());
-        return callService.getForUser(userId).stream().map(CallDto::toDto).collect(Collectors.toList());
     }
 }

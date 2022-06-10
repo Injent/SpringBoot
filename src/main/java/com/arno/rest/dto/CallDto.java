@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Year;
 import java.util.Date;
 
 @Data
@@ -47,11 +48,14 @@ public class CallDto {
 
     private String passport;
 
+    private int age;
+
     public static CallDto toDto (Call call){
         boolean sex = call.getSex() == 1;
         long bornDate = Long.parseLong(String.valueOf(call.getBornDate().getTime()).substring(0,10));
         long callTime = Long.parseLong(String.valueOf(call.getCallTime().getTime()).substring(0,10));
         long editCardDate = Long.parseLong(String.valueOf(call.getCallTime().getTime()).substring(0,10));
+        int age = Year.now().getValue() - Integer.parseInt(String.valueOf(call.getBornDate()).substring(0,4));
         return new CallDto(
                 call.getId(),
                 call.getUserId(),
@@ -68,7 +72,8 @@ public class CallDto {
                 call.getPhoneNumber(),
                 call.getSnils(),
                 call.getPolis(),
-                call.getPassport()
+                call.getPassport(),
+                age
         );
     }
 
