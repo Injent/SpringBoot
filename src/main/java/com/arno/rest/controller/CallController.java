@@ -57,10 +57,4 @@ public class CallController {
 
         return response;
     }
-
-    @GetMapping("/calls")
-    public List<CallDto> getAllUsers(){
-        return callService.getAll().stream().map(CallDto::toDto).collect(Collectors.toList());
-    }
-
 }
