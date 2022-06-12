@@ -2,6 +2,7 @@ package com.arno.rest.dto;
 
 import com.arno.domain.Call;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import liquibase.pro.packaged.S;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,9 +52,9 @@ public class CallDto {
 
     private String orgName;
 
-    private long snils;
+    private String snils;
 
-    private long polis;
+    private String polis;
 
     private String passport;
 
@@ -82,8 +83,8 @@ public class CallDto {
                 call.getResidence(),
                 call.getPhoneNumber(),
                 call.getOrgName(),
-                call.getSnils(),
-                call.getPolis(),
+                "\""+call.getSnils() + "\"",
+                "\""+call.getPolis() + "\"",
                 call.getPassport(),
                 age
         );
