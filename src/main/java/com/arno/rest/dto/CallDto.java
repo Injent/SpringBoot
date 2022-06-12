@@ -83,8 +83,8 @@ public class CallDto {
                 call.getResidence(),
                 call.getPhoneNumber(),
                 call.getOrgName(),
-                "\""+call.getSnils() + "\"",
-                "\""+call.getPolis() + "\"",
+                call.getSnils() + "",
+                call.getPolis() + "",
                 call.getPassport(),
                 age
         );
