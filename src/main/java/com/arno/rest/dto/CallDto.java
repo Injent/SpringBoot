@@ -1,12 +1,15 @@
 package com.arno.rest.dto;
 
 import com.arno.domain.Call;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Year;
+import java.sql.Timestamp;
+import java.time.*;
+import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,9 +24,11 @@ public class CallDto {
 
     private int userId;
 
-    private long callTime;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    private LocalDateTime callTime;
 
-    private long editCardDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate editCardDate;
 
     private String reason;
 
@@ -35,7 +40,8 @@ public class CallDto {
 
     private String lastName;
 
-    private long bornDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate bornDate;
 
     private boolean sex;
 
@@ -55,12 +61,12 @@ public class CallDto {
 
     public static CallDto toDto (Call call){
         boolean sex = call.getSex() == 1;
-        long bornDate = call.getBornDate().getTime();
-        long callTime = call.getCallTime().getTime();
-        long editCardDate = call.getCallTime().getTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(call.getBornDate());
         int age = Year.now().getValue() - calendar.get(Calendar.YEAR);
+        LocalDate editCardDate = new java.sql.Date(call.getCallTime().getTime()).toLocalDate();
+        LocalDateTime callTime = new Timestamp(call.getCallTime().getTime()).toLocalDateTime();
+        LocalDate bornDate = new java.sql.Date(call.getBornDate().getTime()).toLocalDate();
         return new CallDto(
                 call.getId(),
                 call.getUserId(),
@@ -80,31 +86,6 @@ public class CallDto {
                 call.getPolis(),
                 call.getPassport(),
                 age
-        );
-    }
-
-    public static Call toDomainObject(CallDto callDto){
-        byte sex = 0;
-        if (callDto.isSex())
-            sex = 1;
-        return new Call(
-                callDto.getId(),
-                callDto.getUserId(),
-                new Date(callDto.getCallTime()),
-                new Date(callDto.getEditCardDate()),
-                callDto.getReason(),
-                callDto.getBcc(),
-                callDto.getFirstName(),
-                callDto.getMiddleName(),
-                callDto.getLastName(),
-                new Date(callDto.getBornDate()),
-                sex,
-                callDto.getResidence(),
-                callDto.getPhoneNumber(),
-                callDto.getOrgName(),
-                callDto.getSnils(),
-                callDto.getPolis(),
-                callDto.getPassport()
         );
     }
 }
