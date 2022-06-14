@@ -60,7 +60,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="sex" type="TINYINT">
+            <column name="sex" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
 

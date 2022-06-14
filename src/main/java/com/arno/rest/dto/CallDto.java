@@ -1,6 +1,7 @@
 package com.arno.rest.dto;
 
 import com.arno.domain.Call;
+import com.arno.domain.GeoPoint;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import liquibase.pro.packaged.S;
 import lombok.AllArgsConstructor;
@@ -22,43 +23,27 @@ import java.util.Date;
 public class CallDto {
 
     private int id;
-
     private int userId;
-
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime callTime;
-
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate editCardDate;
-
     private String reason;
-
     private String bcc;
-
     private String firstName;
-
     private String middleName;
-
     private String lastName;
-
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate bornDate;
-
     private boolean sex;
-
     private String residence;
-
     private String phoneNumber;
-
     private String orgName;
-
     private String snils;
-
     private String polis;
-
     private String passport;
-
     private int age;
+    private GeoPoint geoPoint;
 
     public static CallDto toDto (Call call){
         boolean sex = call.getSex() == 1;
@@ -86,7 +71,8 @@ public class CallDto {
                 call.getSnils() + "",
                 call.getPolis() + "",
                 call.getPassport(),
-                age
+                age,
+                null
         );
     }
 }

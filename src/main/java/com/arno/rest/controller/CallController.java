@@ -57,4 +57,9 @@ public class CallController {
 
         return response;
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Working";
+    }
 }
